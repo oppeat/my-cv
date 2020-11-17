@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
-import $ from 'jquery';
 import './App.css';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
@@ -9,14 +8,16 @@ import Resume from './Components/Resume';
 import Contact from './Components/Contact';
 import Testimonials from './Components/Testimonials';
 import Portfolio from './Components/Portfolio';
+import data from "./resumeData.json";
 
 class App extends Component {
 
   constructor(props){
     super(props);
+    
     this.state = {
       foo: 'bar',
-      resumeData: {}
+      resumeData: data
     };
 
     ReactGA.initialize('UA-110570651-1');
@@ -25,18 +26,7 @@ class App extends Component {
   }
 
   getResumeData(){
-    $.ajax({
-      url:'/resumeData.json',
-      dataType:'json',
-      cache: false,
-      success: function(data){
-        this.setState({resumeData: data});
-      }.bind(this),
-      error: function(xhr, status, err){
-        console.log(err);
-        alert(err);
-      }
-    });
+    
   }
 
   componentDidMount(){
